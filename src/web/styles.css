@@ -1,212 +1,199 @@
+/* Global styles */
 :root {
-  --primary: #6366f1;
+  --primary-color: #6366f1;
   --primary-hover: #4f46e5;
-  --success: #22c55e;
-  --success-hover: #16a34a;
-  --danger: #ef4444;
-  --danger-hover: #dc2626;
-  --warning: #f59e0b;
-  --bg: #0f172a;
-  --card: #1e293b;
-  --card-hover: #2d3748;
-  --text: #f8fafc;
+  --error-color: #ef4444;
+  --success-color: #22c55e;
+  --background-color: #0f172a;
+  --panel-background: #1e293b;
+  --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --border-radius: 8px;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
 }
 
-.container {
+.app {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-header {
+.app h1 {
+  text-align: center;
+  color: var(--text-primary);
   margin-bottom: 2rem;
-  padding: 2rem;
-  background: var(--card);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  font-size: 2.5rem;
 }
 
-.status-message {
-  margin: 1rem 0;
-  padding: 0.75rem;
-  border-radius: 0.375rem;
-  background: rgba(255, 255, 255, 0.05);
+.panels-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Panel styles */
+.defi-panel,
+.liquidity-optimizer {
+  background: var(--panel-background);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.defi-panel h2,
+.liquidity-optimizer h2 {
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.defi-controls,
+.token-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form controls */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
   color: var(--text-secondary);
   font-size: 0.875rem;
-  text-align: center;
+  font-weight: 500;
 }
 
-.setup-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  margin-top: 1.5rem;
+input[type="number"],
+select {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-.system-controls {
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--primary-color);
+}
+
+/* Risk tolerance slider */
+.risk-tolerance {
+  margin: 1.5rem 0;
+}
+
+.risk-tolerance input[type="range"] {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.control-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-h1 {
-  margin: 0 0 1rem 0;
-  color: var(--primary);
-}
-
-.wallet-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
   margin: 0.5rem 0;
 }
 
-.wallet-info p {
-  margin: 0;
-  padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 0.375rem;
-  font-family: monospace;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-button {
-  padding: 0.75rem 1.5rem;
+/* Buttons */
+.primary-button,
+.success-button {
+  padding: 0.75rem 1rem;
   border: none;
-  border-radius: 0.375rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  transition: background-color 0.2s;
 }
 
 .primary-button {
-  background: var(--primary);
+  background-color: var(--primary-color);
   color: white;
 }
 
 .primary-button:hover:not(:disabled) {
-  background: var(--primary-hover);
-}
-
-.secondary-button {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text);
-}
-
-.secondary-button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.15);
+  background-color: var(--primary-hover);
 }
 
 .success-button {
-  background: var(--success);
+  background-color: var(--success-color);
   color: white;
 }
 
 .success-button:hover:not(:disabled) {
-  background: var(--success-hover);
+  background-color: #16a34a;
 }
 
-.danger-button {
-  background: var(--danger);
-  color: white;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.danger-button:hover:not(:disabled) {
-  background: var(--danger-hover);
-}
-
-.dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.signals-panel,
-.trades-panel {
-  background: var(--card);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-}
-
-.signals-list,
-.trades-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Status messages */
+.status-message {
   margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
 }
 
-.signal,
-.trade {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s, background-color 0.2s;
+.status-message.error {
+  background-color: #fef2f2;
+  color: var(--error-color);
+  border: 1px solid #fee2e2;
 }
 
-.signal:hover,
-.trade:hover {
-  transform: translateY(-2px);
-  background: var(--card-hover);
+.status-message.success {
+  background-color: #f0fdf4;
+  color: var(--success-color);
+  border: 1px solid #dcfce7;
 }
 
-.signal.buy {
-  border: 1px solid var(--success);
-  background: rgba(34, 197, 94, 0.1);
+/* Optimization results */
+.optimization-results {
+  margin-top: 1.5rem;
 }
 
-.signal.sell {
-  border: 1px solid var(--danger);
-  background: rgba(239, 68, 68, 0.1);
+.allocation {
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
-.signal.buy:hover {
-  background: rgba(34, 197, 94, 0.15);
+.allocation h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
 }
 
-.signal.sell:hover {
-  background: rgba(239, 68, 68, 0.15);
-}
-
-.signal p,
-.trade p {
+.allocation p {
   margin: 0.25rem 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
 
-a:hover {
-  text-decoration: underline;
+  .app h1 {
+    font-size: 2rem;
+  }
+
+  .panels-container {
+    grid-template-columns: 1fr;
+  }
 }
